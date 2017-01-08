@@ -1,0 +1,76 @@
+#!/usr/bin/env bash +e
+
+function .files-printer () {
+  echo "== ${1}"
+}
+
+function .files-prompt () {
+  echo -n "== ${1}: "
+}
+
+function .files-tmux_plugin_get () {
+  tmux_plugin_repo=${1}
+  tmux_plugin_name=${2}
+  .files-printer "Getting tmux plugin ${tmux_plugin_name} from ${tmux_plugin_repo}..."
+  if [ ! -s ${HOME}/.tmux/plugins/${tmux_plugin_name}/ ]; then
+    .files-printer "Wait human, downloading tmux plugin ${tmux_plugin_name}..."
+    git clone --depth=1 ${tmux_plugin_repo} ${HOME}/.tmux/plugins/${tmux_plugin_name}
+  else
+    .files-printer "Hey human, ${tmux_plugin_name} already exists - skipping it"
+  fi
+}
+
+function .files-tmux_plugin_init () {
+  .files-printer "Initializing tmux plugins directory"
+  mkdir -p ${HOME}/.tmux/plugins/
+  .files-tmux_plugin_get "https://github.com/tmux-plugins/tpm" "tpm"
+}
+
+function .files-bash_it_get () {
+  bash_it_repo=${1:-"https://github.com/raeoks/bash-it.git"}
+  if [ ! -s ${HOME}/.bash_it/ ]; then
+    .files-printer "Its time to get Bash-It..."
+    git clone --depth=1 ${bash_it_repo} ${HOME}/.bash_it
+  else
+    .files-printer "Bash-It already exists - skipping it"
+  fi
+}
+
+function .files-bash_it_init () {
+  .files-bash_it_get "https://github.com/Bash-it/bash-it.git"
+}
+
+function .files-link_files () {
+  .files-printer "Linking all .files..."
+  replace=${1:-""}
+  for file in $(ls ${PWD}/etc/); do
+    dst="${HOME}/.${file}"
+    src="${PWD}/etc/${file}"
+    if [ -e ${dst} ] || [ -h ${dst} ]; then
+      if [ "${replace}" != "a" ]; then
+          .files-prompt "File ${dst} already exists, replace? [y/n/a] "
+          read replace
+      fi
+      if [ "${replace}" = "a" ] || [ "${replace}" = "y" ]; then
+          .files-printer "Linking ${src} to ${dst}..."
+          rm -f ${dst}
+          ln -s ${src} ${dst}
+          test "${replace}" != "a" && replace=""
+      else
+          .files-printer "Skipping ${src}, as it already exists..."
+      fi
+    else
+      .files-printer "Linking ${src} to ${dst}..."
+      ln -s ${src} ${dst}
+    fi
+  done
+}
+
+function .files-prologue-install () {
+  .files-tmux_plugin_init
+  .files-bash_it_init
+  .files-link_files
+}
+
+.files-prologue-install
+

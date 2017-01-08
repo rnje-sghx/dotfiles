@@ -1,0 +1,13 @@
+.DS_Store
+cscope.*
+ncscope.*
+tags
+tmtags
+.bundle
+.idea/workspace.xml
+.idea
+.redcar
+*.sublime-project
+*.sublime-workspace
+zeus.json
+custom_plan.rb

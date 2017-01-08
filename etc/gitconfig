@@ -1,0 +1,146 @@
+[user]
+	name  = Ranjeet Singh
+	email = ranjeet@raeoks.com
+
+[alias]
+	ad=add --verbose
+	adp=add --verbose --patch
+	ada=add --verbose --all
+	arx=archive --format zip --output
+	bh=branch --verbose
+	bha=branch --verbose --all
+	bhd=branch --verbose --delete
+	bhdl=branch --verbose -D
+	bhf=branch --verbose --force
+	bhfd=branch --verbose --force --delete
+	bhfm=branch --verbose --force --move
+	bhl=branch --verbose --list
+	bhm=branch --verbose --move
+	bht=branch --verbose --track
+	bhr=branch --verbose --remotes
+	bhu=branch --verbose --set-upstream-to
+	ci=commit --verbose
+	cii=commit --verbose --intractive
+	cia=commit --verbose --all
+	ciaa=commit --verbose --all --amend --reuse-message HEAD
+	cim=commit --verbose --message
+	cip=commit --verbose --patch
+	ciam=commit --verrbose --all --message
+	cipm=commit --verbose --patch --message
+	cl=clone --verbose
+	cn=clean
+	cnf=clean --force
+	cnfd=clean --force d
+	cnfdx=clean --force -dx
+	co=checkout
+	cob=checkout -b
+	cobf=checkout -B
+	cof=checkout --force
+	com=checkout master
+	cot=checkout --track
+	cp=cherry-pick
+	dl=rm
+	dlc=rm --cached
+	dld=rm --dry-run
+	dlf=rm --force
+	dlr=rm -r
+	dlfr=rm --force -r
+	dlfd=rm --force --dry-run
+	df=diff
+	dfc=diff --cached
+	dfw=diff --ignore-all-space
+	dfb=diff --ignore-space-change
+	dfwb=diff --ignore-all-space --ignore-space-change
+	dfall=diff --ignore-all-space --ignore-blank-lines --ignore-space-change
+	ft=fetch --verbose
+	ftap=fetch --verbose --all --prune
+	ftapt=fetch --verbose --all --prune --tags
+	lg=log
+	lga=log --pretty=format:'%C(bold)%h%Creset%C(magenta)%d%Creset %s %C(yellow)<%an> %C(cyan)(%cr)%Creset'  --graph --abbrev-commit --date=relative
+	lgas=log --pretty=format:'%C(bold)%h%Creset%C(magenta)%d%Creset %s %C(yellow)<%an> %C(cyan)(%cr)%Creset'  --graph --abbrev-commit --date=relative --stat
+	lgs=log --pretty=format:'%C(red)%h%C(reset) %C(yellow)%cr%C(reset) | %s%d [%C(bold blue)%an%C(reset)]' --graph --date=short
+	lgl=log --pretty=fuller --abbrev-commit --graph --date=iso
+	lgn=log HEAD@{1}..HEAD@{0}
+	lgp=log --patch
+	lgpl=log --patch --pretty=fuller --abbrev-commit --graph --date=iso
+	mg=merge --verbose
+	mga=merge --abort
+	mgff=merge --verbose --ff
+	mgnff=merge --verbose --no-ff
+	mgffo=merge --verbose --ff-only
+	mgsq=merge --verbose --squash
+	mgnsq=merge --verbose --no-squash
+	mgst=merge --verbose --stat
+	mgnst=merge --verbose --no-stat
+	mgpg=merge --verbose --progress
+	mgnpg=merge --verbose --no-progress
+	st=status
+	sts=status -s
+	stsb=status -sb
+	pl=pull
+	plum=pull upstream master
+	plr=pull --rebase
+	ph=push
+	phu=push --set-upstream
+	pho=push origin
+	phom=push origin master
+	phum=push upstream master
+	sh=stash
+	su=submodule update --init --recursive
+	rs=reset
+	rst=reset HEAD
+	rsh=reset --hard
+	rt=remote --verbose
+	rta=remote --verbose add
+	rtd=remote --verbose remove
+	rtr=remote --verbose rename
+	rtp=remote --verbose prune
+	rtpd=remote --verbose prune --dry-run
+	sl=shortlog
+	sl=shortlog --email
+	sls=shortlog --summary
+	sln=shortlog --numbered
+	slsn=shortlog --summary --numbered
+	slsne=shortlog --summary --numbered --email
+	tg=tag
+	tag=tag --annotate
+	tgd=tag --delete
+	tgl=tag --list
+	wc=whatchanged
+
+[merge]
+	conflictstyle = diff3
+	tool = ksdiff
+
+[diff]
+	tool = ksdiff
+
+[color]
+	ui = true
+
+[core]
+	excludesfile = ~/.gitignore
+
+[push]
+	default = tracking
+
+[advice]
+	pushNonFastForward = false
+	statusHints = false
+	commitBeforeMerge = false
+	resolveConflict = false
+	implicitIdentity = false
+	detachedHead = false
+
+[mergetool "ksdiff"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+
+[difftool "ksdiff"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[difftool]
+	prompt = false
+
+[mergetool]
+	prompt = false

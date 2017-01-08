@@ -1,0 +1,34 @@
+#!/usr/bin/env bash +e
+
+source ${HOME}/.bash_profile
+
+function .files-printer () {
+  echo "== ${1}"
+}
+
+function .files-bash_it_enable_completions () {
+  .files-printer "Enabling Bash-It completions..."
+  bash-it enable completion bash-it
+  bash-it enable completion system
+}
+
+function .files-bash_it_enable_plugins () {
+  .files-printer "Enabling Bash-It plugins..."
+  bash-it enable plugin alias-completion
+  bash-it enable plugin base
+}
+
+function .files-bash_it_enable_aliases () {
+  .files-printer "Enabling Bash-It aliases..."
+  bash-it enable alias emacs
+  bash-it enable alias git
+  bash-it enable alias general
+}
+
+function .files-epilogue-install () {
+  .files-bash_it_enable_completions
+  .files-bash_it_enable_plugins
+  .files-bash_it_enable_aliases
+}
+
+.files-epilogue-install

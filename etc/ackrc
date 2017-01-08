@@ -1,0 +1,15 @@
+--ignore-dir=.idea
+--ignore-dir=coverage
+--ignore-dir=log
+--ignore-dir=tmp
+--ignore-file=is:tags
+--ignore-file=match:/cscope/
+--smart-case
+--type-add
+ruby=.haml,.rake
+--type-add
+css=.sass,.scss,.less
+--type-add
+xml=.builder
+--type-set
+puppet=.pp

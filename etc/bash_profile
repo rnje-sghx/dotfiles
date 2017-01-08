@@ -1,0 +1,5 @@
+#!/usr/bin/env bash -e
+
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi

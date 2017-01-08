@@ -1,0 +1,44 @@
+#!/usr/bin/env bash +e
+
+function .files-printer () {
+  echo "== ${1}"
+}
+
+function .files-tmux_plugin_clean () {
+  src=${HOME}/.tmux/plugins
+  if [ -s "${src}" ]; then
+    .files-printer "Deleting tmux plugins at ${src}..."
+    rm -rf "${src}"
+  fi
+}
+
+function .files-bash_it_clean () {
+  src=${HOME}/.bash_it
+  if [ -s "${src}" ];
+  then
+    .files-printer "Deleting Bash-It at ${src}..."
+    rm -rf "${src}"
+  fi
+}
+
+function .files-unlink_files () {
+  .files-printer "Unlinking all .files..."
+  for file in $(ls ${PWD}/etc/);
+  do
+    test "${file}" == "" && continue
+    src="${HOME}/.${file}"
+    if [ -e ${src} ] || [ -h ${src} ] || [ -L "${src}" ];
+    then
+      .files-printer "Deleting ${src}..."
+      rm -f ${src}
+    fi
+  done
+}
+
+function .files-clean () {
+  .files-tmux_plugin_clean
+  .files-bash_it_clean
+  .files-unlink_files
+}
+
+.files-clean
