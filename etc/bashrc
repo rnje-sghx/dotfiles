@@ -101,7 +101,7 @@ export BASH_IT="${HOME}/.bash_it"
 # Theme
 export THEME_SHOW_CLOCK=true
 export THEME_CLOCK_FORMAT="%H:%M:%S"
-export BASH_IT_THEME='bobby'
+export BASH_IT_THEME='raeoks'
 
 export GIT_HOSTING='git@github.com'
 
