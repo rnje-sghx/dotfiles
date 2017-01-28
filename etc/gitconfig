@@ -107,6 +107,7 @@
 	tgd=tag --delete
 	tgl=tag --list
 	wc=whatchanged
+	who=blame
 
 [merge]
 	conflictstyle = diff3
