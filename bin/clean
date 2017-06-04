@@ -21,6 +21,15 @@ function .files-bash_it_clean () {
   fi
 }
 
+function .files-oh_my_zsh_clean () {
+  src=${HOME}/.oh_my_zsh
+  if [ -s "${src}" ];
+  then
+    .files-printer "Deleting Oh My ZSH at ${src}..."
+    rm -rf "${src}"
+  fi
+}
+
 function .files-unlink_files () {
   .files-printer "Unlinking all .files..."
   for file in $(ls ${PWD}/etc/);
@@ -38,6 +47,7 @@ function .files-unlink_files () {
 function .files-clean () {
   .files-tmux_plugin_clean
   .files-bash_it_clean
+  .files-oh_my_zsh_clean
   .files-unlink_files
 }
 

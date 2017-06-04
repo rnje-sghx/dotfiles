@@ -1,0 +1,169 @@
+#!/usr/bin/env zsh +e
+
+# Unix SHELL Base
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export ARCHFLAGS="-arch x86_64"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+export EDITOR='vim'
+
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin"
+
+# Development Environments
+
+# dotnet
+export PATH="${PATH}:/usr/local/share/dotnet"
+
+# LaTeX
+export PATH="${PATH}:/Library/TeX/texbin"
+
+# ccache
+export PATH="${PATH}:/usr/local/opt/ccache/libexec"
+
+# perl
+function perl-it () {
+  if which perl > /dev/null; then
+    PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
+    eval "$(perl -I${HOME}/perl5/lib/perl5 -Mlocal::lib)"
+  fi
+}
+
+function plenv-perl () {
+  if which plenv > /dev/null; then
+    eval "$(plenv init -)";
+  fi
+}
+
+## Ruby
+
+### rbenv: https://github.com/rbenv/rbenv
+export RBENV_ROOT=/usr/local/var/rbenv
+
+function rbenv-ruby {
+    if which rbenv > /dev/null; then
+        eval "$(rbenv init -)";
+    fi
+}
+
+### chef-dk: https://github.com/chef/chef-dk
+function chef-dk-ruby {
+    if which chef > /dev/null; then
+        eval "$(chef shell-init bash)";
+    fi
+}
+
+# # jenv
+export JENV_ROOT=/usr/local/opt/jenv
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
+# java
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+# golang
+export GOPATH="${HOME}/Code"
+export PATH="${GOPATH}/bin:${PATH}:/usr/local/opt/go/libexec/bin"
+
+# rust
+export PATH="${HOME}/.cargo/bin:${PATH}"
+
+# nodenv
+export NODENV_ROOT=/usr/local/var/nodenv
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
+
+# pyenv
+export PYENV_ROOT=/usr/local/var/pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# sbtenv
+export SBTENV_ROOT=/usr/local/var/sbtenv
+if which sbtenv > /dev/null; then eval "$(sbtenv init -)"; fi
+
+# scalaenv
+export SCALAENV_ROOT=/usr/local/var/scalaenv
+if which scalaenv > /dev/null; then eval "$(scalaenv init -)"; fi
+
+# sbt
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -Xmx1024M"
+
+# haskell-cabal
+export PATH="${HOME}/.cabal/bin:${PATH}"
+
+export MONO_GAC_PREFIX="/usr/local"
+
+export MANPATH="${MANPATH}:/usr/local/opt/erlang/lib/erlang/man"
+
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007";'
+
+function precmd() {
+  eval "${PROMPT_COMMAND}"
+}
+
+# the fuck configuration
+eval "$(thefuck --alias)"
+
+# Themes
+export ZSH=${HOME}/.oh_my_zsh
+
+ZSH_THEME="ys"
+
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+plugins=(git rbenv ruby gem rails brew bundler)
+
+source ${ZSH}/oh-my-zsh.sh
+
+alias zshconfig="vim ~/.zshrc"
+
+unsetopt correct_all
+
+plenv-perl
+rbenv-ruby
+
+# Aliases
+
+alias ems="/usr/bin/env emacs . &"
+alias la="ls -lach"
+alias lsd="ls | grep ^d"
+which ack >> /dev/null || alias ack=ack-grep
+
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| ack'
+alias -g L="| less"
+alias -g M="| most"
+alias -g B="&|"
+alias -g HL="--help"
+alias -g LL="2>&1 | less"
+alias -g CA="2>&1 | cat -A"
+alias -g NE="2> /dev/null"
+alias -g NUL="> /dev/null 2>&1"
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+
+alias ll="ls -l"
+if which brew &> /dev/null; then
+  alias i="brew install"
+  alias up="brew upgrade"
+else if which apt-get &> /dev/null; then
+    alias i="sudo apt-get install"
+    alias up="sudo apt-get upgrade"
+  fi
+fi
+alias gi="gem install"
+alias ctags="/usr/local/Cellar/ctags/5.8/bin/ctags"
+alias refreshctags="ctags -f tags --recurse=yes . && find . -name '*.rb' -o -name '*.java' -o -name '*.cs' -o -name '*.js' -o -name '*.haml' -o -name '*.erb' -o -name '*.coffee' >| cscope.files && cscope -b -q"
+alias sp=spork
+alias r=rake
+alias b=bundle
+alias be='bundle exec'
+
+# Directory Options
+setopt auto_cd
+setopt auto_pushd
+
+export PATH=./bin:~/.bin:${PATH}

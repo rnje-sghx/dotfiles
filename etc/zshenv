@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh +e
+
+# exenv
+export EXENV_ROOT=/usr/local/var/exenv
+if which exenv > /dev/null; then eval "$(exenv init -)"; fi
+
+if [ -f ~/.zshrc ]; then
+  . ~/.zshrc
+fi

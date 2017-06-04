@@ -40,6 +40,20 @@ function .files-bash_it_init () {
   .files-bash_it_get "https://github.com/Bash-it/bash-it.git"
 }
 
+function .files-oh_my_zsh_get () {
+  oh_my_zsh_repo=${1:-"https://github.com/raeoks/oh-my-zsh.git"}
+  if [ ! -s ${HOME}/.oh_my_zsh/ ]; then
+    .files-printer "Its time to get Oh My ZSH..."
+    git clone --depth=1 ${oh_my_zsh_repo} ${HOME}/.oh_my_zsh
+  else
+    .files-printer "Oh My ZSH already exists - skipping it"
+  fi
+}
+
+function .files-oh_my_zsh_init () {
+  .files-oh_my_zsh_get "https://github.com/robbyrussell/oh-my-zsh.git"
+}
+
 function .files-link_files () {
   .files-printer "Linking all .files..."
   replace=${1:-""}
@@ -69,6 +83,7 @@ function .files-link_files () {
 function .files-prologue-install () {
   .files-tmux_plugin_init
   .files-bash_it_init
+  .files-oh_my_zsh_init
   .files-link_files
 }
 
