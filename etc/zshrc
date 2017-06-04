@@ -110,7 +110,9 @@ ZSH_THEME="ys"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git rbenv ruby gem rails bundler)
+plugins=(git mercurial rbenv ruby gem rails bundler pyenv \
+         python virutalenv virtualenvwrapper django pip \
+         lein mix golang node rust cargo gnu-utils)
 
 source ${ZSH}/oh-my-zsh.sh
 
