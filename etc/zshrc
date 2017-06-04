@@ -110,7 +110,7 @@ ZSH_THEME="ys"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git rbenv ruby gem rails brew bundler)
+plugins=(git rbenv ruby gem rails bundler)
 
 source ${ZSH}/oh-my-zsh.sh
 
