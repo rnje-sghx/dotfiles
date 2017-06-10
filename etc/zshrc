@@ -5,21 +5,25 @@ export ARCHFLAGS="-arch x86_64"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 export EDITOR='vim'
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
 # Development Environments
 
+# XQuartz X11
+export PATH="/opt/X11/bin:${PATH}"
+
 # dotnet
-export PATH="${PATH}:/usr/local/share/dotnet"
+export PATH="/usr/local/share/dotnet:${PATH}"
 
 # LaTeX
-export PATH="${PATH}:/Library/TeX/texbin"
+export PATH="/Library/TeX/texbin:${PATH}"
 
 # ccache
-export PATH="${PATH}:/usr/local/opt/ccache/libexec"
+export PATH="/usr/local/opt/ccache/libexec:${PATH}"
 
 # llvm
 LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+export PATH="/usr/local/opt/llvm/bin:${PATH}"
 
 # perl
 function perl-it () {
@@ -61,12 +65,12 @@ if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 # export JAVA_HOME=$(/usr/libexec/java_home)
 
 # groovy
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
-export GRAILS_HOME=/usr/local/opt/grails/libexec
+export GROOVY_HOME="/usr/local/opt/groovy/libexec"
+export GRAILS_HOME="/usr/local/opt/grails/libexec"
 
 # golang
 export GOPATH="${HOME}/Code"
-export PATH="${GOPATH}/bin:${PATH}:/usr/local/opt/go/libexec/bin"
+export PATH="${GOPATH}/bin:/usr/local/opt/go/libexec/bin:${PATH}"
 
 # rust
 export PATH="${HOME}/.cargo/bin:${PATH}"
@@ -100,7 +104,8 @@ export PATH="${HOME}/.cabal/bin:${PATH}"
 
 export MONO_GAC_PREFIX="/usr/local"
 
-export MANPATH="${MANPATH}:/usr/local/opt/erlang/lib/erlang/man"
+# erlang
+export MANPATH="/usr/local/opt/erlang/lib/erlang/man:${MANPATH}"
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007";'
 
