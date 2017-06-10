@@ -77,6 +77,10 @@ export PATH="${GOPATH}/bin:/usr/local/opt/go/libexec/bin:${PATH}"
 # rust
 export PATH="${HOME}/.cargo/bin:${PATH}"
 
+# exenv
+export EXENV_ROOT=/usr/local/var/exenv
+if which exenv > /dev/null; then eval "$(exenv init -)"; fi
+
 # nodenv
 export NODENV_ROOT=/usr/local/var/nodenv
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi

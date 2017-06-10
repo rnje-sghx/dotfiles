@@ -1,5 +1,3 @@
-#!/usr/bin/env bash +e
-
 # Unix SHELL Base
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
