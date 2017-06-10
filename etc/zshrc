@@ -50,12 +50,16 @@ function chef-dk-ruby {
     fi
 }
 
-# # jenv
+# jenv
 export JENV_ROOT=/usr/local/opt/jenv
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # java
-export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=$(/usr/libexec/java_home)
+
+# groovy
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+export GRAILS_HOME=/usr/local/opt/grails/libexec
 
 # golang
 export GOPATH="${HOME}/Code"
