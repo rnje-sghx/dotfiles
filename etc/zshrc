@@ -18,6 +18,9 @@ export PATH="${PATH}:/Library/TeX/texbin"
 # ccache
 export PATH="${PATH}:/usr/local/opt/ccache/libexec"
 
+# llvm
+LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+
 # perl
 function perl-it () {
   if which perl > /dev/null; then
@@ -76,6 +79,7 @@ if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 export PYENV_ROOT=/usr/local/var/pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+export PATH="/usr/local/opt/sphinx-doc/bin:${PATH}"
 
 # sbtenv
 export SBTENV_ROOT=/usr/local/var/sbtenv
@@ -87,6 +91,9 @@ if which scalaenv > /dev/null; then eval "$(scalaenv init -)"; fi
 
 # sbt
 export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -Xmx1024M"
+
+# scala
+export SCALA_HOME="/usr/local/opt/scala/idea"
 
 # haskell-cabal
 export PATH="${HOME}/.cabal/bin:${PATH}"
