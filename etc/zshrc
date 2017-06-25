@@ -146,8 +146,6 @@ rbenv-ruby
 alias ems="/usr/bin/env emacs . &"
 alias la="ls -lach"
 alias lsd="ls | grep ^d"
-which ack >> /dev/null || alias ack=ack-grep
-
 alias -g H='| head'
 alias -g T='| tail'
 alias -g G='| ack'
