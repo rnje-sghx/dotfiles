@@ -1,19 +1,28 @@
 # Unix SHELL Base
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export ARCHFLAGS="-arch x86_64"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+export EDITOR='vim'
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
 # Development Environments
 
+# XQuartz X11
+export PATH="/opt/X11/bin:${PATH}"
+
 # dotnet
-export PATH="${PATH}:/usr/local/share/dotnet"
+export PATH="/usr/local/share/dotnet:${PATH}"
 
 # LaTeX
-export PATH="${PATH}:/Library/TeX/texbin"
+export PATH="/Library/TeX/texbin:${PATH}"
 
 # ccache
-export PATH="${PATH}:/usr/local/opt/ccache/libexec"
+export PATH="/usr/local/opt/ccache/libexec:${PATH}"
+
+# curl
+export PATH="/usr/local/opt/curl/bin:${PATH}"
 
 # perl
 function perl-it () {
@@ -53,16 +62,20 @@ function chef-dk-ruby {
 export EXENV_ROOT=/usr/local/var/exenv
 if which exenv > /dev/null; then eval "$(exenv init -)"; fi
 
-# # jenv
-# export JENV_ROOT=/usr/local/opt/jenv
-# if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+# jenv
+export JENV_ROOT=/usr/local/opt/jenv
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # java
-export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=$(/usr/libexec/java_home)
+
+# groovy
+export GROOVY_HOME="/usr/local/opt/groovy/libexec"
+export GRAILS_HOME="/usr/local/opt/grails/libexec"
 
 # golang
 export GOPATH="${HOME}/Code"
-export PATH="${GOPATH}/bin:${PATH}:/usr/local/opt/go/libexec/bin"
+export PATH="${GOPATH}/bin:/usr/local/opt/go/libexec/bin:${PATH}"
 
 # rust
 export PATH="${HOME}/.cargo/bin:${PATH}"
@@ -92,7 +105,7 @@ export PATH="${HOME}/.cabal/bin:${PATH}"
 
 export MONO_GAC_PREFIX="/usr/local"
 
-export MANPATH="${MANPATH}:/usr/local/opt/erlang/lib/erlang/man"
+export MANPATH="/usr/local/opt/erlang/lib/erlang/man:${MANPATH}"
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007";'
 
@@ -132,5 +145,5 @@ rbenv-ruby
 
 export PATH=./bin:~/.bin:$PATH
 
- source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
- source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
