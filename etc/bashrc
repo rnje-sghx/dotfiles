@@ -12,6 +12,9 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 # XQuartz X11
 export PATH="/opt/X11/bin:${PATH}"
 
+# Confluent Platform
+export PATH="/opt/confluent/bin:${PATH}"
+
 # dotnet
 export PATH="/usr/local/share/dotnet:${PATH}"
 
@@ -86,8 +89,11 @@ if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 
 # pyenv
 export PYENV_ROOT=/usr/local/var/pyenv
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python"
+export PATH="/usr/local/opt/sphinx-doc/bin:${PATH}"
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+export WORKON_HOME=~/Code/env
 
 # sbtenv
 export SBTENV_ROOT=/usr/local/var/sbtenv

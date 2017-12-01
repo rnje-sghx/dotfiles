@@ -87,9 +87,10 @@ if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 
 # pyenv
 export PYENV_ROOT=/usr/local/var/pyenv
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python"
+export PATH="/usr/local/opt/sphinx-doc/bin:${PATH}"
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-export PATH="/usr/local/opt/sphinx-doc/bin:${PATH}"
 
 # sbtenv
 export SBTENV_ROOT=/usr/local/var/sbtenv
