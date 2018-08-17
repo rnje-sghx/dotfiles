@@ -1,5 +1,5 @@
 [user]
-	name  = Ranjeet Singh
+	name = Ranjeet Singh
 	email = ranjeet@raeoks.com
 
 [alias]
@@ -24,6 +24,7 @@
 	cia=commit --verbose --all
 	ciaa=commit --verbose --all --amend --reuse-message HEAD
 	cim=commit --verbose --message
+	cum=commit --verbose --message
 	cip=commit --verbose --patch
 	ciam=commit --verrbose --all --message
 	cipm=commit --verbose --patch --message
@@ -145,3 +146,10 @@
 
 [mergetool]
 	prompt = false
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[http]
+	cookiefile = ~/.gitcookies
