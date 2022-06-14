@@ -11,3 +11,5 @@ tmtags
 *.sublime-workspace
 zeus.json
 custom_plan.rb
+.node-version
+nohup.out

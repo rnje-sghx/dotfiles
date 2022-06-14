@@ -153,3 +153,5 @@
 	clean = git-lfs clean -- %f
 [http]
 	cookiefile = ~/.gitcookies
+[init]
+	defaultBranch = master

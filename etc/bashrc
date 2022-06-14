@@ -9,6 +9,9 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
 # Development Environments
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # XQuartz X11
 export PATH="/opt/X11/bin:${PATH}"
 
@@ -46,7 +49,7 @@ plenv-perl
 ## Ruby
 
 ### rbenv: https://github.com/rbenv/rbenv
-export RBENV_ROOT=/usr/local/var/rbenv
+export RBENV_ROOT=/opt/homebrew/var/rbenv
 
 function rbenv-ruby {
     if which rbenv > /dev/null; then
@@ -66,7 +69,7 @@ export EXENV_ROOT=/usr/local/var/exenv
 if which exenv > /dev/null; then eval "$(exenv init -)"; fi
 
 # jenv
-export JENV_ROOT=/usr/local/opt/jenv
+export JENV_ROOT=/opt/homebrew/var/jenv
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # java
@@ -84,11 +87,11 @@ export PATH="${GOPATH}/bin:/usr/local/opt/go/libexec/bin:${PATH}"
 export PATH="${HOME}/.cargo/bin:${PATH}"
 
 # nodenv
-export NODENV_ROOT=/usr/local/var/nodenv
+export NODENV_ROOT=/opt/homebrew/var/nodenv
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 
 # pyenv
-export PYENV_ROOT=/usr/local/var/pyenv
+export PYENV_ROOT=/opt/homebrew/var/pyenv
 export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python"
 export PATH="/usr/local/opt/sphinx-doc/bin:${PATH}"
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
@@ -150,8 +153,5 @@ source ${BASH_IT}/bash_it.sh
 rbenv-ruby
 
 export PATH=./bin:~/.bin:$PATH
-
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
